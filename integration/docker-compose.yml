@@ -3,8 +3,16 @@ version: '3.1'
 services:
   db:
     image: postgres
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
     restart: always
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: demco_ff
+
+  demco-ff-api:
+    image: demco-ff-api
+    ports:
+      - 8080:8080
