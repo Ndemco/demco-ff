@@ -34,3 +34,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Node
+/node_modules/
+node_modules
+/node_modules
+/integration/node_modules

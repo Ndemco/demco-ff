@@ -16,3 +16,8 @@ services:
     image: demco-ff-api
     ports:
       - 8080:8080
+    environment:
+      DB_HOST: 0.0.0.0
+      DB_PORT: 5432
+      DB_USER: test
+      DB_PASSWORD: password
