@@ -1,12 +1,11 @@
 package com.demco.plugins
 
-import com.demco.rest.routes.userRouting
+import com.demco.rest.routes.userRoutes
 import io.ktor.server.routing.*
 import io.ktor.http.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
-import io.ktor.server.request.*
 
 fun Application.configureRouting() {
     install(StatusPages) {
@@ -23,7 +22,7 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
-        userRouting()
+        userRoutes()
     }
 }
 class AuthenticationException : RuntimeException()

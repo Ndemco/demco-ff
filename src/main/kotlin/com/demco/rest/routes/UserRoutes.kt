@@ -11,16 +11,19 @@ import io.ktor.server.routing.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 fun Route.userRoutes() = route("/users") {
+  signup()
   getAllUsers()
   getUserById()
+  deleteUser()
 }
 
 private fun Route.signup() = post<UserDTO>("/signup") { body ->
-  val user = User.new {
-    firstName = body.firstName
-    lastName = body.lastName
-    username = body.username
-    email = body.email
+  val user = transaction { User.new {
+      firstName = body.firstName
+      lastName = body.lastName
+      username = body.username
+      email = body.email
+    }
   }
 
   call.respond(user)
@@ -41,35 +44,12 @@ private fun Route.getUserById() = get("/{id}") {
 }
 
 private fun Route.deleteUser() = delete("/{id}") {
+  val id = call.getIntId()
 
-}
-fun Route.userRouting() {
-  route("/user") {
-    get {
-      call.respondText("Placeholder 2")
-    }
-    get("{id?}") {
-      val id = call.getIntId()
+  val user = transaction { User.findById(id) } ?.apply { transaction { delete() } } ?: return@delete call.respondText(
+    "No user with ID $id",
+    status = HttpStatusCode.NotFound
+  )
 
-      val user = transaction { User.findById(id) } ?: return@get call.respondText(
-        "No user with id $id",
-        status = HttpStatusCode.NotFound
-      )
-      call.respond(user.toDTO())
-    }
-//    post {
-//      val user = call.receive<User>()
-//      userDb.add(user);
-//      call.respondText("User stored correctly", status = HttpStatusCode.Created)
-//    }
-//    delete("{id?}") {
-//      val id = call.parameters["id"] ?: return@delete call.respond(HttpStatusCode.BadRequest)
-//
-//      if (userDb.removeIf {it.id == id.toLong()}) {
-//        call.respondText("User removed correctly", status = HttpStatusCode.Accepted)
-//      } else {
-//        call.respondText("Not found", status = HttpStatusCode.NotFound)
-//      }
-//    }
-  }
+  call.respond(user.toDTO())
 }

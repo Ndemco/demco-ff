@@ -5,7 +5,7 @@ import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-object Users: IntIdTable("person") {
+object Users: IntIdTable("users") {
   val firstName = varchar("first_name", 50)
   val lastName =  varchar("last_name", 50)
   val username = varchar("username", 50)
