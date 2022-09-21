@@ -1,16 +1,25 @@
 #!/bin/bash
-# Execute privilege on gradlew
+# Grant execute privilege for gradlew
 chmod +x ./gradlew
 
 
 # Build the demco-ff docker image
+echo "====> Building api docker image..."
 ./gradlew buildImage
+echo "====> ...done"
+
 # Load image to docker
+echo "====> Loading API image to docker..."
 docker load < ./build/jib-image.tar
+echo "====> ...done"
 
 # Remove the current docker db container
 # This is necessary to re-seed the DB with any new data that may have been added
-docker rm "$(docker ps --filter name=db-1 -q)"
+echo "====> Removing old db container if it exists..."
+docker rm "$(docker ps -a --filter name=db-1 -q)"
+echo "====> ...done"
 
 # Run the docker images
-docker compose -f ./integration/docker-compose.yml up
+echo "====> Spinning up containers..."
+docker compose -f ./integration/docker-compose.yml up --build
+echo "====> ...done"

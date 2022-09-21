@@ -1,6 +1,6 @@
 package com.demco.plugins
 
-import com.demco.routes.userRouting
+import com.demco.rest.routes.userRouting
 import io.ktor.server.routing.*
 import io.ktor.http.*
 import io.ktor.server.plugins.statuspages.*
