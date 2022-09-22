@@ -1,6 +1,6 @@
 package com.demco.rest.dto
 
-import com.demco.rest.entities.User
+import com.demco.rest.entity.User
 import kotlinx.serialization.Serializable
 
 fun User.toDTO() = UserDTO(firstName, lastName, username, email)
