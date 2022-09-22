@@ -31,7 +31,7 @@ private fun Route.getAllUsers() = get("/all") {
 private fun Route.getUserById() = get("/{id}") {
   val id = call.getIntId()
 
-  call.respond(UserService.getUserByIdTest(id))
+  call.respond(UserService.getUserById(id))
 }
 
 private fun Route.deleteUser() = delete("/{id}") {

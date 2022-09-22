@@ -14,13 +14,7 @@ object UserService {
     return Response.created(transaction { Users.create(user) }.toDTO())
   }
 
-  fun getUserById(id: Int): Response<UserDTO, List<ErrorMessage>> {
-    val user = transaction { Users.findById(id) } ?: return Response.notFound()
-
-    return Response.ok(user.toDTO())
-  }
-
-  fun getUserByIdTest(id: Int): Response<UserDTO, List<ErrorMessage>> =
+  fun getUserById(id: Int): Response<UserDTO, List<ErrorMessage>> =
       transaction { Users.findById(id) }
         ?.let { Response.ok(it.toDTO()) }
         ?: Response.notFound()
