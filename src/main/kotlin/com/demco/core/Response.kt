@@ -30,6 +30,8 @@ class Response<out S, out E> private constructor(
     }
   }
 
+  fun getDTO() = success?.data
+
   companion object {
     fun <S> success(status: HttpStatusCode, result: S? = null) =
       Response<S, Nothing>(status, success = ResultData(result))

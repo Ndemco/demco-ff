@@ -1,19 +1,19 @@
 package com.demco.rest.entity
 
-import com.demco.rest.dto.UserDTO
+import com.demco.rest.dto.UserRequestDTO
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
-import java.util.*
 
 object Users: IntIdTable("users") {
-  val firstName = varchar("first_name", 50)
-  val lastName =  varchar("last_name", 50)
-  val username = varchar("username", 50)
-  val email = varchar("email", 250).uniqueIndex()
+  val firstName = varchar("first_name", 64)
+  val lastName =  varchar("last_name", 64)
+  val username = varchar("username", 64)
+  val email = varchar("email", 255).uniqueIndex()
+  val password = varchar("password", 64)
 
-  fun create(user: UserDTO): User =
+  fun create(user: UserRequestDTO): User =
     User.new {
       firstName = user.firstName
       lastName = user.lastName
@@ -42,4 +42,4 @@ class User(id: EntityID<Int>) : IntEntity(id) {
   var lastName by Users.lastName
   var username by Users.username
   var email by Users.email
-}
+  var password by Users.password}
