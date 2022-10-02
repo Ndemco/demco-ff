@@ -1,5 +1,4 @@
 import {expect, test} from "@playwright/test";
-import {request} from "playwright";
 
 test.describe('users endpoint', function() {
   test('should get a user', async ({ request }) => {
@@ -38,11 +37,11 @@ test.describe('users endpoint', function() {
     });
   });
 
-  test.only("testing cookies", async({ request }) => {
+  test.only("testing cookies", async ({ request }) => {
     const response = await request.post('/users/login', {
-      data: {
-        "email": "ndemco@gmail.com",
-        "password": "abc123"
+      form: {
+        'email': 'ndemco@gmail.com',
+        'password': 'abc123abc123'
       }
     })
 

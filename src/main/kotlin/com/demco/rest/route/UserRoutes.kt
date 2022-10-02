@@ -54,3 +54,14 @@ private fun Route.deleteUser() = delete("/{id}") {
 
   call.respond(UserService.deleteUser(id))
 }
+
+private fun Route.placeholder() = get("{/placeholder/{id}") {
+  val id = call.getIntId()
+  val userSession = call.principal<UserSession>()
+
+  if(userSession?.user?.id == id) {
+    call.respondText("This is a placeholder route")
+  } else {
+    call.respond(Response.unauthorized())
+  }
+}
