@@ -19,6 +19,7 @@ object Users: IntIdTable("users") {
       lastName = user.lastName
       username = user.username
       email = user.email
+      password = user.password
     }
 
   fun findById(id: Int): User? = User.findById(id)

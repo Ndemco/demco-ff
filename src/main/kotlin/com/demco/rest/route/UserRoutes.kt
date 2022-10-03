@@ -23,6 +23,7 @@ fun Route.userRoutes() = route("/users") {
   getAllUsers()
   getUserById()
   deleteUser()
+  authenticate("auth-session") { placeholder() }
 }
 
 // TODO: Auth, sessions, bcrypt
@@ -35,7 +36,7 @@ private fun Route.login() = post("/login") {
 
   call.sessions.set("user_session", userSession)
 
-  call.respond(Response.ok())
+  call.respond(Response.ok(userSession?.user))
 }
 
 // TODO: Create a Page DTO for paginated collections
