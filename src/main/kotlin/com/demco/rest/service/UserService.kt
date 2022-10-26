@@ -1,5 +1,6 @@
 package com.demco.rest.service
 
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.demco.core.ErrorMessage
 import com.demco.core.Response
 import com.demco.rest.dto.UserLoginDTO
@@ -12,7 +13,6 @@ import org.jetbrains.exposed.sql.transactions.transaction
 //TODO: validation and auth
 object UserService {
   fun signup(user: UserRequestDTO): Response<UserResponseDTO, List<ErrorMessage>> {
-
     return Response.created(transaction { Users.create(user) }.toResponseDTO())
   }
 

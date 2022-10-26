@@ -1,3 +1,4 @@
+# TODO: Need to figure out how to cache here so it doesn't always build from scratch
 FROM gradle:7-jdk16 AS build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src

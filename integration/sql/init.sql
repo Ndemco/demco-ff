@@ -14,7 +14,4 @@ CREATE TABLE users (
 );
 
 INSERT INTO users
-(first_name, last_name, username, email, password)
-VALUES
-('Nick', 'DeMarco', 'Gabagool King', 'ndemco@gmail.com', 'abc123abc123'),
-('Christian', 'DeMarco', 'We Did It Joe', 'cdemco@gmail.com', '123abc123abc');
+VALUES(1, 'Nick', 'DeMarco', 'ndemco', 'ndemco@gmail.com', '$2a$12$MfS1lvWiijLm0poA0RQp7.woq1eVcrUJH6BdDyIoSdYkHoqR.lNXO');

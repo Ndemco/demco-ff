@@ -6,7 +6,6 @@ import com.demco.plugins.UserSession
 import com.demco.rest.dto.UserRequestDTO
 import com.demco.rest.service.UserService
 import com.demco.util.getIntId
-import io.ktor.http.*
 import io.ktor.server.application.call
 import io.ktor.server.auth.*
 import io.ktor.server.response.respondText
@@ -19,14 +18,15 @@ import io.ktor.server.sessions.*
 
 fun Route.userRoutes() = route("/users") {
   signup()
-   authenticate("auth-form") { login() }
-  getAllUsers()
-  getUserById()
-  deleteUser()
-  authenticate("auth-session") { placeholder() }
+  authenticate("auth-form") { login() }
+  authenticate("auth-session") {
+    getAllUsers()
+    getUserById()
+    deleteUser()
+    placeholder()
+  }
 }
 
-// TODO: Auth, sessions, bcrypt
 private fun Route.signup() = post<UserRequestDTO>("/signup") { body ->
   call.respond(UserService.signup(body))
 }
@@ -44,25 +44,24 @@ private fun Route.getAllUsers() = get("/all") {
   call.respondText("Placeholder")
 }
 
-private fun Route.getUserById() = get("/{id}") {
+// TODO: Figure out a solution to needing /user/
+private fun Route.getUserById() = get("/user/{id}") {
   val id = call.getIntId()
 
   call.respond(UserService.getUserById(id))
 }
 
-private fun Route.deleteUser() = delete("/{id}") {
+private fun Route.deleteUser() = delete("/user/{id}") {
   val id = call.getIntId()
 
   call.respond(UserService.deleteUser(id))
 }
 
-private fun Route.placeholder() = get("{/placeholder/{id}") {
-  val id = call.getIntId()
+private fun Route.placeholder() = get("/placeholder") {
   val userSession = call.principal<UserSession>()
-
-  if(userSession?.user?.id == id) {
-    call.respondText("This is a placeholder route")
-  } else {
-    call.respond(Response.unauthorized())
+  if (userSession == null) {
+    println("USER SESSION IS NULL")
   }
+
+  call.respond(Response.ok("Placeholder"))
 }

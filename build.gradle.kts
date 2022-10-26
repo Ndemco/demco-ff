@@ -5,6 +5,7 @@ val exposedVersion: String by project
 val postgresVersion: String by project
 val bcryptVersion: String by project
 val kredsVersion: String by project
+val hikaricpVersion: String by project
 
 plugins {
   application
@@ -41,6 +42,7 @@ dependencies {
   implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
   implementation("org.postgresql:postgresql:$postgresVersion")
   implementation("at.favre.lib", "bcrypt", bcryptVersion)
+  implementation("com.zaxxer", "HikariCP", hikaricpVersion)
   implementation("io.github.crackthecodeabhi", "kreds", kredsVersion)
   testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")

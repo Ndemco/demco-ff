@@ -1,5 +1,6 @@
 package com.demco.rest.entity
 
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.demco.rest.dto.UserRequestDTO
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -19,7 +20,7 @@ object Users: IntIdTable("users") {
       lastName = user.lastName
       username = user.username
       email = user.email
-      password = user.password
+      password = BCrypt.withDefaults().hashToString(12, user.password.toCharArray())
     }
 
   fun findById(id: Int): User? = User.findById(id)
