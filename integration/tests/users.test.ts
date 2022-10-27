@@ -68,8 +68,8 @@ test.describe('users endpoint', function() {
 
     const response = await newRequestContext.post('/users/login', {
       form: {
-        "email": "notarealperson@email.com",
-        "password": "thispassworddoesntexist"
+        'email': 'notarealperson@email.com',
+        'password': 'thispassworddoesntexist'
       }
     })
 
