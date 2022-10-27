@@ -4,6 +4,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt
 import com.demco.core.SessionStore
 import com.demco.rest.dto.UserResponseDTO
 import com.demco.rest.dto.toResponseDTO
+import com.demco.rest.entity.User
 import com.demco.rest.entity.Users
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
@@ -19,7 +20,8 @@ fun Application.configureAuth() {
       userParamName = "email"
       passwordParamName = "password"
       validate { credentials ->
-        validateCredentials(credentials)
+        val user = transaction { Users.findByEmail(credentials.name) } ?: return@validate null
+        verifyUser(credentials, user)
       }
       challenge {
         throw AuthenticationException()
@@ -52,22 +54,12 @@ fun Application.configureSessions() {
   }
 }
 
-// TODO: There has to be a better way?
-fun validateCredentials(credentials: UserPasswordCredential): UserSession? {
-  val user = transaction { Users.findByEmail(credentials.name) }
+fun verifyUser(credentials: UserPasswordCredential, user: User): UserSession? {
+  val results = BCrypt.verifyer().verify(credentials.password.toCharArray(), user.password)
 
-  return if (user != null) {
-    val results = BCrypt.verifyer().verify(credentials.password.toCharArray(), user.password)
-
-    if (results.verified) {
-      UserSession(user.toResponseDTO())
-    } else {
-      null
-    }
+  return if (results.verified) {
+    UserSession(user.toResponseDTO())
   } else {
     null
   }
 }
-
-
-
