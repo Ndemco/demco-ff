@@ -8,7 +8,8 @@ const config: PlaywrightTestConfig = {
             "Cookie": process.env.HEADER_COOKIE
         }
     },
-    globalSetup: require.resolve('./global-setup')
+    globalSetup: require.resolve('./global-setup'),
+    globalTeardown: require.resolve('./global-teardown')
 };
 
 export default config;

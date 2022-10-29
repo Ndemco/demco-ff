@@ -2,18 +2,20 @@
 # Grant execute privilege for gradlew
 chmod +x ./gradlew
 
-###################################################################################################
-## TODO: I don't think this is still necessary now that we have a Dockerfile                       #
-## Build the demco-ff docker image                                                                 #
-#echo "====> Building api docker image..."                                                         #
-#./gradlew buildImage                                                                              #
-#echo "====> ...done"                                                                              #
-#                                                                                                  #
-## Load image to docker                                                                            #
-#echo "====> Loading API image to docker..."                                                       #
-#docker load < ./build/jib-image.tar                                                               #
-#echo "====> ...done"                                                                              #
-###################################################################################################
+# Remove previously built tar
+echo"====> Removing old api tar file..."
+rm ./build/jib-image.tar || true
+
+# Build the demco-ff docker image
+echo "====> Building api docker image..."
+./gradlew buildImage
+echo "====> ...done"
+
+# Load image to docker
+echo "====> Loading API image to docker..."
+docker load < ./build/jib-image.tar
+echo "====> ...done"
+
 # Remove the current docker db container
 # This is necessary to re-seed the DB with any new data that may have been added
 echo "====> Removing old db container if it exists..."

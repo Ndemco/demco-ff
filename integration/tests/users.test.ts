@@ -63,7 +63,7 @@ test.describe('users endpoint', function() {
     expect(response.status()).toEqual(401)
   })
 
-  test("should fail to login up with invalid credentials", async () => {
+  test("should fail to login with invalid credentials", async () => {
     const newRequestContext = await requestContext.newContext({baseURL: 'http://demco-ff-api:8080'})
 
     const response = await newRequestContext.post('/users/login', {

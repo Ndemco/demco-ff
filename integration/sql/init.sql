@@ -13,5 +13,5 @@ CREATE TABLE users (
   password      VARCHAR(250) NOT NULL
 );
 
-INSERT INTO users
-VALUES(1, 'Nick', 'DeMarco', 'ndemco', 'ndemco@gmail.com', '$2a$12$MfS1lvWiijLm0poA0RQp7.woq1eVcrUJH6BdDyIoSdYkHoqR.lNXO');
+-- INSERT INTO users
+-- VALUES(1, 'Nick', 'DeMarco', 'ndemco', 'ndemco@gmail.com', '$2a$12$MfS1lvWiijLm0poA0RQp7.woq1eVcrUJH6BdDyIoSdYkHoqR.lNXO');

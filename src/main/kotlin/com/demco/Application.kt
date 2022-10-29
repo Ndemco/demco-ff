@@ -1,5 +1,6 @@
 package com.demco
 
+import com.demco.db.Connect
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import com.demco.plugins.*

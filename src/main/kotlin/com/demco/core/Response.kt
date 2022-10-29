@@ -10,7 +10,7 @@ class Response<out S, out E> private constructor(
   val status: HttpStatusCode,
   private val success: ResultData<S>? = null,
   private val error: ResultData<E>? = null
-  ) {
+) {
   init {
     require(!(status.isSuccess() && success == null || !status.isSuccess() && error == null)) {
       "Either success or error must be st and correspond to the status code"
@@ -55,9 +55,9 @@ class Response<out S, out E> private constructor(
   }
 }
 
-  data class ResultData<T>(
-    val data: T? = null
-  )
+data class ResultData<T>(
+  val data: T? = null
+)
 
 suspend inline fun ApplicationCall.respond(response: Response<*, *>) {
   val res: suspend (ResultData<*>) -> Unit = { result ->

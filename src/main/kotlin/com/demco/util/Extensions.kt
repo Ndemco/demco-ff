@@ -14,13 +14,13 @@ fun ApplicationCall.getParam(name: String): String = getParamOrNull(name) ?: thr
 
 fun String.toUUIDOrNull() = try {
   UUID.fromString(this)
-} catch (e: IllegalArgumentException) {
+} catch(e: IllegalArgumentException) {
   null
 }
 
 fun String.toUUID(): UUID = try {
   UUID.fromString(this)
-} catch (e: IllegalArgumentException) {
+} catch(e: IllegalArgumentException) {
   throw InvalidUUIDException()
 }
 

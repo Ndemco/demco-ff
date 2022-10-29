@@ -12,7 +12,7 @@ import io.ktor.server.sessions.*
 import io.ktor.util.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
-data class UserSession(val user: UserResponseDTO): Principal
+data class UserSession(val user: UserResponseDTO) : Principal
 
 fun Application.configureAuth() {
   install(Authentication) {

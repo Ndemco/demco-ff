@@ -24,7 +24,7 @@ services:
       - "6379:6379"
 
   demco-ff-api:
-    build: ..
+    image: demco-ff-api
     ports:
       - "8080:8080"
     depends_on:
