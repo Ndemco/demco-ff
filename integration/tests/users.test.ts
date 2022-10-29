@@ -48,17 +48,10 @@ test.describe('users endpoint', function() {
     })
   });
 
-  test("should succeed with correct session auth", async ({ request }) => {
-    let response = await request.get('/users/placeholder');
-
-    expect(response.status()).toEqual(200);
-    expect(await response.text()).toEqual('Placeholder');
-  })
-
   test("should fail without a session", async() => {
     const newRequestContext = await requestContext.newContext({baseURL: 'http://demco-ff-api:8080'})
 
-    const response = await newRequestContext.get('/users/placeholder');
+    const response = await newRequestContext.get('/users/user/1');
 
     expect(response.status()).toEqual(401)
   })

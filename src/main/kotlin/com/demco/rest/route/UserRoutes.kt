@@ -23,7 +23,6 @@ fun Route.userRoutes() = route("/users") {
     getAllUsers()
     getUserById()
     deleteUser()
-    placeholder()
   }
 }
 
@@ -55,13 +54,4 @@ private fun Route.deleteUser() = delete("/user/{id}") {
   val id = call.getIntId()
 
   call.respond(UserService.deleteUser(id))
-}
-
-private fun Route.placeholder() = get("/placeholder") {
-  val userSession = call.principal<UserSession>()
-  if (userSession == null) {
-    println("USER SESSION IS NULL")
-  }
-
-  call.respond(Response.ok("Placeholder"))
 }
