@@ -41,6 +41,6 @@ services:
     working_dir: /integration
     volumes:
       - ./:/integration
-    command: bash -c "npm config set update-notifier false && npx playwright test"
+    entrypoint: ./docker-entrypoint.sh
     depends_on:
       - demco-ff-api

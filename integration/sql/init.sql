@@ -66,5 +66,5 @@ CREATE TABLE leagues (
     pp_fumble_td                SMALLINT NOT NULL,
     pp_fumble_lost              SMALLINT NOT NULL,
     playoff_week                SMALLINT NOT NULL,
-    playoff_teams               SMALLINT,
+    playoff_teams               SMALLINT
 );
