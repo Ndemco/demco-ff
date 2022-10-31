@@ -1,12 +1,10 @@
 #!/bin/bash
-# Grant execute privilege for gradlew
-chmod +x ./gradlew
 
 # Remove previously built tar
 echo"====> Removing old api tar file..."
 rm ./build/jib-image.tar || true
 
-# Build the demco-ff docker image
+# Build the demco-ff docker image to a tar
 echo "====> Building api docker image..."
 ./gradlew buildImage
 echo "====> ...done"
