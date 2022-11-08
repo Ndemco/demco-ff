@@ -43,6 +43,8 @@ dependencies {
   implementation("org.postgresql:postgresql:$postgresVersion")
   implementation("at.favre.lib", "bcrypt", bcryptVersion)
   implementation("com.zaxxer", "HikariCP", hikaricpVersion)
+  implementation("org.litote.kmongo:kmongo:4.7.2")
+  implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.7.2")
   implementation("io.github.crackthecodeabhi", "kreds", kredsVersion)
   testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")

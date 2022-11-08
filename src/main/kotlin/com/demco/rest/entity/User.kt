@@ -2,10 +2,12 @@ package com.demco.rest.entity
 
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.demco.rest.dto.UserRequestDTO
+import org.bson.codecs.pojo.annotations.BsonId
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
+import org.litote.kmongo.Id
 
 object Users: IntIdTable("users") {
   val firstName = varchar("first_name", 64)
@@ -46,3 +48,13 @@ class User(id: EntityID<Int>) : IntEntity(id) {
   var email by Users.email
   var password by Users.password
 }
+
+data class UserM(
+  @BsonId
+  val id: Id<UserM>? = null,
+  val firstName: String,
+  val lastName: String,
+  val username: String,
+  val email: String,
+  val password: String
+)
