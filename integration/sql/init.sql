@@ -1,3 +1,5 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
 CREATE DATABASE demco_ff;
 
 \c demco_ff;
@@ -65,6 +67,5 @@ CREATE TABLE leagues (
     pp_spt_fumble_recovery      SMALLINT NOT NULL,
     pp_fumble_td                SMALLINT NOT NULL,
     pp_fumble_lost              SMALLINT NOT NULL,
-    playoff_week                SMALLINT NOT NULL,
-    playoff_teams               SMALLINT
+    playoff_week                SMALLINT NOT NULL
 );

@@ -138,5 +138,4 @@ class League(id: EntityID<Int>): IntEntity(id) {
   var ppFumbleTd by Leagues.pp_fumble_td
   var ppFumbleLost by Leagues.pp_fumble_lost
   var playoffWeek by Leagues.playoff_week
-  var playoffTeams by Leagues.playoff_teams
 }
