@@ -6,7 +6,7 @@ async function globalSetup(config: FullConfig) {
 }
 
 async function setup() {
-  const requestContext = await request.newContext({baseURL: 'http://demco-ff-api:8080'})
+  const requestContext = await request.newContext({ baseURL: 'http://demco-ff-api:8080' })
 
   await requestContext.post('/users/signup', {
     data: {

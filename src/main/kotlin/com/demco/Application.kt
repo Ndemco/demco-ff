@@ -10,8 +10,8 @@ fun main() {
     Connect.db
     configureSerialization()
     //configureSecurity()
+    configureAuth()
     configureRouting()
     configureSessions()
-    configureAuth()
   }.start(wait = true)
 }

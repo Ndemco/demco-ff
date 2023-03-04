@@ -3,6 +3,8 @@ package com.demco.core
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.respond
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 
 typealias ErrorMessage = String
 
@@ -55,6 +57,7 @@ class Response<out S, out E> private constructor(
   }
 }
 
+@Serializable
 data class ResultData<T>(
   val data: T? = null
 )

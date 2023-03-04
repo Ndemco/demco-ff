@@ -17,49 +17,6 @@ services:
       timeout: 3s
       retries: 10
 
-  mongo1:
-    image: mongo:6.0.2
-    volumes:
-      - ./rs-init.sh:/scripts/rs-init.sh
-    ports:
-      - "27017:27017"
-    restart: always
-    entrypoint: ["/usr/bin/mongod", "--quiet", "--bind_ip_all", "--replSet", "demco-ff-replica-set"]
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
-
-  mongo2:
-    image: mongo:6.0.2
-    ports:
-      - "27018:27017"
-    restart: always
-    entrypoint: [ "/usr/bin/mongod", "--quiet", "--bind_ip_all", "--replSet", "demco-ff-replica-set" ]
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
-
-  mongo3:
-    image: mongo:6.0.2
-    ports:
-      - "27019:27017"
-    restart: always
-    entrypoint: [ "/usr/bin/mongod", "--quiet", "--bind_ip_all", "--replSet", "demco-ff-replica-set" ]
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
-
-  mongo-setup:
-    image: mongo:6.0.2
-    depends_on:
-      - mongo1
-      - mongo2
-      - mongo3
-    volumes:
-      - ./rs-init.sh:/scripts/rs-init.sh
-    restart: "no"
-    entrypoint: ["bash", "/scripts/rs-init.sh"]
-
   redis:
     image: redis
     command: redis-server

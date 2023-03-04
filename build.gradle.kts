@@ -9,9 +9,9 @@ val hikaricpVersion: String by project
 
 plugins {
   application
-  kotlin("jvm") version "1.7.10"
-  id("io.ktor.plugin") version "2.1.1"
-  id("org.jetbrains.kotlin.plugin.serialization") version "1.7.10"
+  kotlin("jvm") version "1.8.10"
+  id("io.ktor.plugin") version "2.2.3"
+  id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
 }
 
 group = "com.demco"
@@ -43,8 +43,6 @@ dependencies {
   implementation("org.postgresql:postgresql:$postgresVersion")
   implementation("at.favre.lib", "bcrypt", bcryptVersion)
   implementation("com.zaxxer", "HikariCP", hikaricpVersion)
-  implementation("org.litote.kmongo:kmongo:4.7.2")
-  implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.7.2")
   implementation("io.github.crackthecodeabhi", "kreds", kredsVersion)
   testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")

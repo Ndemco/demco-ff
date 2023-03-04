@@ -49,7 +49,7 @@ test.describe('users endpoint', function() {
   });
 
   test("should fail without a session", async() => {
-    const newRequestContext = await requestContext.newContext({baseURL: 'http://demco-ff-api:8080'})
+    const newRequestContext = await requestContext.newContext({ baseURL: 'http://demco-ff-api:8080' })
 
     const response = await newRequestContext.get('/users/user/1');
 
@@ -57,7 +57,7 @@ test.describe('users endpoint', function() {
   })
 
   test("should fail to login with invalid credentials", async () => {
-    const newRequestContext = await requestContext.newContext({baseURL: 'http://demco-ff-api:8080'})
+    const newRequestContext = await requestContext.newContext({ baseURL: 'http://demco-ff-api:8080' })
 
     const response = await newRequestContext.post('/users/login', {
       form: {
