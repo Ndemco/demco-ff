@@ -1,6 +1,5 @@
 package com.demco.rest.service
 
-import at.favre.lib.crypto.bcrypt.BCrypt
 import com.demco.core.ErrorMessage
 import com.demco.core.Response
 import com.demco.rest.dto.UserLoginDTO

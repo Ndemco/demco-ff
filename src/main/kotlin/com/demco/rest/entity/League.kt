@@ -1,14 +1,13 @@
 package com.demco.rest.entity
 
-import at.favre.lib.crypto.bcrypt.BCrypt
-import com.demco.rest.dto.UserRequestDTO
+import com.demco.rest.dto.LeagueRequestDTO
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 object Leagues: IntIdTable("leagues") {
-  val owner_id = integer("owner_id")
+  val owner_id = integer("owner_id").uniqueIndex()
   val name =  varchar("name", 50)
   val qbs = integer("qbs")
   val rbs = integer("rbs")
@@ -59,15 +58,60 @@ object Leagues: IntIdTable("leagues") {
   val pp_fumble_td = integer("pp_fumble_td")
   val pp_fumble_lost = integer("pp_fumble_lost")
   val playoff_week = integer("playoff_week")
-  val playoff_teams = integer("playoff_teams")
 
-  fun create(user: UserRequestDTO): User =
-    User.new {
-      firstName = user.firstName
-      lastName = user.lastName
-      username = user.username
-      email = user.email
-      password = BCrypt.withDefaults().hashToString(12, user.password.toCharArray())
+  fun create(league: LeagueRequestDTO): League =
+    League.new {
+      ownerId = league.ownerId
+      name =  league.name
+      qbs = league.qbs
+      rbs = league.rbs
+      wrs = league.wrs
+      tes = league.tes
+      flex = league.flex
+      kicker = league.kicker
+      def = league.def
+      ppPassYd = league.ppPassYd
+      ppPassTd = league.ppPassTd
+      ppPass2pt = league.ppPass2pt
+      ppPassInt = league.ppPassInt
+      ppPassPick6 = league.ppPassPick6
+      ppRushYd = league.ppRushYd
+      ppRushTd = league.ppRushTd
+      ppRush2pt = league.ppRush2pt
+      ppRecRecep = league.ppRecRecep
+      ppRecYd = league.ppRecYd
+      ppRecTd = league.ppRecTd
+      ppRec2pt = league.ppRec2pt
+      ppFg0_19 = league.ppFg0_19
+      ppFg20_29 = league.ppFg20_29
+      ppFg30_39 = league.ppFg30_39
+      ppFg40_49 = league.ppFg40_49
+      ppFg_50 = league.ppFg_50
+      ppPat = league.ppPat
+      ppFgMissed = league.ppFgMissed
+      fgMissedMax = league.fgMissedMax
+      ppPatMissed = league.ppPatMissed
+      ppDefTd = league.ppDefTd
+      ppDefPtsAllowed0 = league.ppDefPtsAllowed0
+      ppDefPtsAllowed1_6 = league.ppDefPtsAllowed1_6
+      ppDefPtsAllowed7_13 = league.ppDefPtsAllowed7_13
+      ppDefPtsAllowed14_20 = league.ppDefPtsAllowed14_20
+      ppDefPtsAllowed21_27 = league.ppDefPtsAllowed21_27
+      ppDefPtsAllowed28_34 = league.ppDefPtsAllowed28_34
+      ppDefPtsAllowed35 = league.ppDefPtsAllowed35
+      ppDef4thDownStop = league.ppDef4thDownStop
+      ppDefSack = league.ppDefSack
+      ppDefInterception = league.ppDefInterception
+      ppDefFumbleRecovery = league.ppDefFumbleRecovery
+      ppDefSafety = league. ppDefSafety
+      ppDefForcedFumble = league.ppDefForcedFumble
+      ppDefBlockedKick = league.ppDefBlockedKick
+      ppSptTd = league.ppSptTd
+      ppSptForcedFumble = league.ppSptForcedFumble
+      ppSptFumbleRecovery = league.ppSptFumbleRecovery
+      ppFumbleTd = league.ppFumbleTd
+      ppFumbleLost = league.ppFumbleLost
+      playoffWeek = league.playoffWeek
     }
 
   fun findById(id: Int): User? = User.findById(id)
@@ -86,7 +130,7 @@ object Leagues: IntIdTable("leagues") {
 }
 
 class League(id: EntityID<Int>): IntEntity(id) {
-  companion object : IntEntityClass<User>(Leagues)
+  companion object : IntEntityClass<League>(Leagues)
   var ownerId by Leagues.owner_id
   var name by Leagues.name
   var qbs by Leagues.qbs
@@ -103,13 +147,13 @@ class League(id: EntityID<Int>): IntEntity(id) {
   var ppPassPick6 by Leagues.pp_pass_pick6
   var ppRushYd by Leagues.pp_rush_yd
   var ppRushTd by Leagues.pp_rush_td
-  var ppRush2pt by Leagues.pp_pass_2pt
+  var ppRush2pt by Leagues.pp_rush_2pt
   var ppRecRecep by Leagues.pp_rec_recep
   var ppRecYd by Leagues.pp_rec_yd
   var ppRecTd by Leagues.pp_rec_td
   var ppRec2pt by Leagues.pp_rec_2pt
   var ppFg0_19 by Leagues.pp_fg_0_19
-  var ppFg20_29 by Leagues.pp_fg_30_39
+  var ppFg20_29 by Leagues.pp_fg_20_29
   var ppFg30_39 by Leagues.pp_fg_30_39
   var ppFg40_49 by Leagues.pp_fg_40_49
   var ppFg_50 by Leagues.pp_fg_50
