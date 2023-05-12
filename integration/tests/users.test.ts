@@ -1,6 +1,6 @@
 import {expect, request as requestContext, test} from "@playwright/test";
 
-test.describe('users endpoint', function() {
+test.describe('/users', function() {
   test('should get a user', async ({ request }) => {
     const response = await request.get('/users/user/1');
 

@@ -1,5 +1,6 @@
 package com.demco.plugins
 
+import com.demco.rest.route.LeagueRoutes.leagueRoutes
 import com.demco.rest.route.userRoutes
 import io.ktor.server.routing.*
 import io.ktor.http.*
@@ -22,6 +23,7 @@ fun Application.configureRouting() {
       call.respondText("Hello World!")
     }
     userRoutes()
+    leagueRoutes()
   }
 }
 

@@ -3,7 +3,6 @@ package com.demco.core
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.respond
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 typealias ErrorMessage = String

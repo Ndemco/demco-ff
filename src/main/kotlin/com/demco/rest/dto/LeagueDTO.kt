@@ -1,5 +1,6 @@
 package com.demco.rest.dto
 
+import com.demco.rest.entity.League
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -78,7 +79,7 @@ data class LeagueResponseDTO(
   val ppRushTd: Int,
   val ppRush2pt: Int,
   val ppRecRecep: Double,
-  val ppRecYd: Double,
+  val ppRecYd: Float,
   val ppRecTd: Int,
   val ppRec2pt: Int,
   val ppFg0_19: Int,
@@ -112,3 +113,59 @@ data class LeagueResponseDTO(
   val ppFumbleLost: Int,
   val playoffWeek: Int
 )
+
+fun League.toResponseDTO(): LeagueResponseDTO =
+  LeagueResponseDTO(
+    id = id.value,
+    ownerId = ownerId,
+    name = name,
+    qbs = qbs,
+    rbs = rbs,
+    wrs = wrs,
+    tes = tes,
+    flex = flex,
+    kicker = kicker,
+    def = def,
+    ppPassYd = ppPassYd,
+    ppPassTd = ppPassTd,
+    ppPass2pt = ppPass2pt,
+    ppPassInt = ppPassInt,
+    ppPassPick6 = ppPassPick6,
+    ppRushYd = ppRushYd,
+    ppRushTd = ppRushTd,
+    ppRush2pt = ppRush2pt,
+    ppRecRecep = ppRecRecep,
+    ppRecYd = ppRecYd,
+    ppRecTd = ppRecTd,
+    ppRec2pt = ppRec2pt,
+    ppFg0_19 = ppFg0_19,
+    ppFg20_29 = ppFg20_29,
+    ppFg30_39 = ppFg30_39,
+    ppFg40_49 = ppFg40_49,
+    ppFg_50 = ppFg_50,
+    ppPat = ppPat,
+    ppFgMissed = ppFgMissed,
+    fgMissedMax = fgMissedMax,
+    ppPatMissed = ppPatMissed,
+    ppDefTd = ppDefTd,
+    ppDefPtsAllowed0 = ppDefPtsAllowed0,
+    ppDefPtsAllowed1_6 = ppDefPtsAllowed1_6,
+    ppDefPtsAllowed7_13 = ppDefPtsAllowed7_13,
+    ppDefPtsAllowed14_20 = ppDefPtsAllowed14_20,
+    ppDefPtsAllowed21_27 = ppDefPtsAllowed21_27,
+    ppDefPtsAllowed28_34 = ppDefPtsAllowed28_34,
+    ppDefPtsAllowed35 = ppDefPtsAllowed35,
+    ppDef4thDownStop = ppDef4thDownStop,
+    ppDefSack = ppDefSack,
+    ppDefInterception = ppDefInterception,
+    ppDefFumbleRecovery = ppDefFumbleRecovery,
+    ppDefSafety = ppDefSafety,
+    ppDefForcedFumble = ppDefForcedFumble,
+    ppDefBlockedKick = ppDefBlockedKick,
+    ppSptTd = ppSptTd,
+    ppSptForcedFumble = ppSptForcedFumble,
+    ppSptFumbleRecovery = ppSptFumbleRecovery,
+    ppFumbleTd = ppFumbleTd,
+    ppFumbleLost = ppFumbleLost,
+    playoffWeek = playoffWeek
+  )

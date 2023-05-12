@@ -7,7 +7,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 object Leagues: IntIdTable("leagues") {
-  val owner_id = integer("owner_id").uniqueIndex()
+  val owner_id = integer("owner_id")
   val name =  varchar("name", 50)
   val qbs = integer("qbs")
   val rbs = integer("rbs")
@@ -16,7 +16,7 @@ object Leagues: IntIdTable("leagues") {
   val flex = integer("flex")
   val kicker = integer("kicker")
   val def = integer("def")
-  val pp_pass_yd = double("val pp_pass_yd")
+  val pp_pass_yd = double("pp_pass_yd")
   val pp_pass_td = integer("pp_pass_td")
   val pp_pass_2pt = integer("pp_pass_2pt")
   val pp_pass_int = integer("pp_pass_int")
@@ -114,18 +114,10 @@ object Leagues: IntIdTable("leagues") {
       playoffWeek = league.playoffWeek
     }
 
-  fun findById(id: Int): User? = User.findById(id)
+  fun findById(id: Int): League? = League.findById(id)
 
-  fun findByUsername(username: String): User? =
-    User.find { Users.username eq username }
-      .firstOrNull()
-
-  fun findByEmail(email: String): User? =
-    User.find{ Users.email eq email}
-      .firstOrNull()
-
-  fun delete(id: Int): User? =
-    User.findById(id)
+  fun delete(id: Int): League? =
+    League.findById(id)
       ?.apply{ delete() }
 }
 
