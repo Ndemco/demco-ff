@@ -6,15 +6,7 @@ async function globalTeardown(config: FullConfig) {
 }
 
 async function teardown() {
-  const requestContext = await request.newContext({
-    baseURL: 'http://demco-ff-api:8080',
-    extraHTTPHeaders: {
-      "Cookie": process.env.HEADER_COOKIE
-    }
-  })
-
-  let response = await requestContext.delete('/users/user/1');
-  expect(response.status()).toEqual(200);
+  // use this if we need any sort of post-test cleanup
 }
 
 export default globalTeardown;
